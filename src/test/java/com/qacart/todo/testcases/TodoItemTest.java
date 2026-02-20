@@ -4,6 +4,7 @@ import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.pages.LoginPage;
 import com.qacart.todo.pages.NewTodoPage;
 import com.qacart.todo.pages.TodoPage;
+import com.qacart.todo.utils.ConfigUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,7 +13,8 @@ public class TodoItemTest extends BaseTest {
     public void ShouldBeAbleToAddTodoItem() {
         LoginPage loginPage = new LoginPage(driver);
         String todoItemText = loginPage.navigateToLoginPage()
-                .login("michaelzarif@example.com", "12312345")
+                .login(ConfigUtils.getInstance().getPropertyValue("email"),
+                        ConfigUtils.getInstance().getPropertyValue("password"))
                 .clickAddTodoButton()
                 .addNewTodoItem("Learn Selenium")
                 .getTodoItemText();
@@ -23,7 +25,8 @@ public class TodoItemTest extends BaseTest {
     public void ShouldBeAbleToDeleteTodoItem(){
         LoginPage loginPage = new LoginPage(driver);
         String noTodoItemsMessage = loginPage.navigateToLoginPage()
-                .login("michaelzarif@example.com", "12312345")
+                .login(ConfigUtils.getInstance().getPropertyValue("email"),
+                        ConfigUtils.getInstance().getPropertyValue("password"))
                 .deleteTodoItem()
                 .getNoTodoItemsMessage();
         Assert.assertEquals(noTodoItemsMessage, "No Available Todos");

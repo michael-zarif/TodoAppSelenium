@@ -1,6 +1,7 @@
 package com.qacart.todo.pages;
 
 import com.qacart.todo.base.BasePage;
+import com.qacart.todo.utils.ConfigUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +21,7 @@ public class LoginPage extends BasePage {
     private WebElement submitButton;
 
     public LoginPage navigateToLoginPage(){
-        driver.get("https://qacart-todo.herokuapp.com/login");
+        driver.get(ConfigUtils.getInstance().getPropertyValue("baseUrl"));
         return this;
     }
 
