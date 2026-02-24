@@ -51,7 +51,7 @@ public class RegisterApi {
             throw new RuntimeException("Something went wrong with the request");
         }
 
-        accessToken = response.path("accessToken");
+        accessToken = response.path("access_token");
         userId = response.path("userId");
         firstName = response.path("firstName");
         restAssuredCookies = response.detailedCookies().asList();

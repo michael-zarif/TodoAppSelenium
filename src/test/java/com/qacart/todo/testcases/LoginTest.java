@@ -11,10 +11,10 @@ public class LoginTest extends BaseTest {
     @Test
     public void ShouldBeAbleToLoginWithValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
-        String welcomeMessage = loginPage.navigateToLoginPage()
+        String welcomeMessage = loginPage.load()
                 .login(ConfigUtils.getInstance().getPropertyValue("email"),
                         ConfigUtils.getInstance().getPropertyValue("password"))
                 .getWelcomeMessage();
-        Assert.assertEquals(welcomeMessage, "GOOD AFTERNOON MICHAEL");
+        Assert.assertEquals(welcomeMessage, "GOOD EVENING MICHAEL");
     }
 }

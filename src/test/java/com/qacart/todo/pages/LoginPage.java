@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     @FindBy(css = "[data-testid=\"submit\"]")
     private WebElement submitButton;
 
-    public LoginPage navigateToLoginPage(){
+    public LoginPage load(){
         driver.get(ConfigUtils.getInstance().getPropertyValue("baseUrl"));
         return this;
     }
