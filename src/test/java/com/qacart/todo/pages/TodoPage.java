@@ -1,6 +1,7 @@
 package com.qacart.todo.pages;
 
 import com.qacart.todo.base.BasePage;
+import com.qacart.todo.config.EndPoint;
 import com.qacart.todo.utils.ConfigUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class TodoPage extends BasePage {
     private WebElement noTodoItemsMessage;
 
     public TodoPage load(){
-        driver.get(ConfigUtils.getInstance().getPropertyValue("baseUrl") + "/todo") ;
+        driver.get(ConfigUtils.getInstance().getPropertyValue("baseUrl") + EndPoint.PAGE_TODO_ENDPOINT) ;
         return this;
     }
 
