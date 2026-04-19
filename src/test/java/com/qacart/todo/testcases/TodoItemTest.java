@@ -3,9 +3,7 @@ package com.qacart.todo.testcases;
 import com.qacart.todo.api.RegisterApi;
 import com.qacart.todo.api.TasksApi;
 import com.qacart.todo.base.BaseTest;
-import com.qacart.todo.pages.LoginPage;
 import com.qacart.todo.pages.TodoPage;
-import com.qacart.todo.utils.ConfigUtils;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import jdk.jfr.Description;
@@ -17,7 +15,7 @@ public class TodoItemTest extends BaseTest {
     @Story("Add new Todo item")
     @Description("It will add a new Todo item by filling the value and clicking add")
     @Test(description = "Test Adding Todo item functionality")
-    public void ShouldBeAbleToAddTodoItem() {
+    public void shouldBeAbleToAddTodoItem() {
         RegisterApi registerApi = new RegisterApi();
         registerApi.register();
         TodoPage todoPage = new TodoPage(driver);
@@ -34,7 +32,7 @@ public class TodoItemTest extends BaseTest {
     @Story("Delete Todo item")
     @Description("It will delete a Todo item and checking for deletion")
     @Test(description = "Test Deleting Todo item functionality")
-    public void ShouldBeAbleToDeleteTodoItem(){
+    public void shouldBeAbleToDeleteTodoItem(){
         RegisterApi registerApi = new RegisterApi();
         registerApi.register();
 
