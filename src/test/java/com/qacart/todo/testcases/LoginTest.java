@@ -21,6 +21,6 @@ public class LoginTest extends BaseTest {
                 .login(ConfigUtils.getInstance().getPropertyValue("email"),
                         ConfigUtils.getInstance().getPropertyValue("password"))
                 .getWelcomeMessage();
-        Assert.assertEquals(welcomeMessage, "GOOD AFTERNOON MICHAEL");
+        Assert.assertEquals(welcomeMessage, "GOOD EVENING MICHAEL");
     }
 }
