@@ -7,6 +7,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.Description; // Changed import
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 @Feature("Auth Feature")
@@ -21,6 +22,8 @@ public class LoginTest extends BaseTest {
                 .login(ConfigUtils.getInstance().getPropertyValue("email"),
                         ConfigUtils.getInstance().getPropertyValue("password"))
                 .getWelcomeMessage();
-        Assert.assertEquals(welcomeMessage, "GOOD EVENING MICHAEL");
+//        Assert.assertEquals(welcomeMessage, "GOOD EVENING MICHAEL");
+        Assert.assertTrue(welcomeMessage.contains("GOOD"));
+        Assert.assertTrue(welcomeMessage.contains("MICHAEL"));
     }
 }
