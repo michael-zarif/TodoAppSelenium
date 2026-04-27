@@ -81,6 +81,24 @@ To view the report, you need the Allure command-line tool installed.
 
     This command will process the results and automatically open the interactive report in your default web browser.
 
-## CI/CD Integration
+## CI/CD Integration (GitHub Actions)
 
-This project is configured for Continuous Integration using GitHub Actions (refer to the `.github/workflows` directory if present). The workflow typically defines steps to check out the code, set up Java and Maven, run the test suite, and generate/publish the Allure report automatically on every push or pull request.
+This project includes two GitHub Actions workflows configured in the `.github/workflows` directory:
+
+1.  **Selenium UI Tests (`main.yml`)**:
+    *   **Trigger**: Runs on every push to the `master` branch.
+    *   **Environment**: Executes on a `macos-latest` runner.
+    *   **Actions**:
+        *   Checks out the repository code.
+        *   Sets up Java 21 (Temurin distribution) with Maven caching to speed up builds.
+        *   Sets up the latest version of Google Chrome.
+        *   Executes the entire Selenium test suite using the command `mvn clean test`.
+
+2.  **Automated API Tests (`postman.yml`)**:
+    *   **Trigger**: Runs on every push to any branch.
+    *   **Environment**: Executes on an `ubuntu-latest` runner.
+    *   **Actions**:
+        *   Checks out the repository code.
+        *   Installs the Postman CLI tool.
+        *   Authenticates with Postman using an API key stored securely in GitHub Secrets (`POSTMAN_API_KEY`).
+        *   Runs a specific Postman collection (identified by its ID) using the Postman CLI to verify the API layer's functionality.
