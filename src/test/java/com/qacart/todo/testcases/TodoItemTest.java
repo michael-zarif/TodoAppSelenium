@@ -8,19 +8,28 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import jdk.jfr.Description;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Feature("Todo Feature")
 public class TodoItemTest extends BaseTest {
+
+    private RegisterApi registerApi;
+    private TodoPage todoPage;
+
+    @BeforeMethod
+    public void setupTodoTest() {
+        registerApi = new RegisterApi();
+        registerApi.register();
+        todoPage = new TodoPage(driver);
+        todoPage.load();
+        injectCookiesToBrowser(registerApi.getRestAssuredCookies());
+    }
+
     @Story("Add new Todo item")
     @Description("It will add a new Todo item by filling the value and clicking add")
     @Test(description = "Test Adding Todo item functionality")
     public void shouldBeAbleToAddTodoItem() {
-        RegisterApi registerApi = new RegisterApi();
-        registerApi.register();
-        TodoPage todoPage = new TodoPage(driver);
-        todoPage.load();
-        injectCookiesToBrowser(registerApi.getRestAssuredCookies());
         String todoItemText = todoPage
                 .load()
                 .clickAddTodoButton()
@@ -33,15 +42,8 @@ public class TodoItemTest extends BaseTest {
     @Description("It will delete a Todo item and checking for deletion")
     @Test(description = "Test Deleting Todo item functionality")
     public void shouldBeAbleToDeleteTodoItem(){
-        RegisterApi registerApi = new RegisterApi();
-        registerApi.register();
-
         TasksApi tasksApi = new TasksApi();
         tasksApi.addTask(registerApi.getAccessToken());
-
-        TodoPage todoPage = new TodoPage(driver);
-        todoPage.load();
-        injectCookiesToBrowser(registerApi.getRestAssuredCookies());
 
         String noTodoItemsMessage = todoPage
                 .load()
